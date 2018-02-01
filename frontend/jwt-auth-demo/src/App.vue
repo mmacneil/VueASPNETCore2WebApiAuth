@@ -1,20 +1,6 @@
 <template>
   <div id="app">
-  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-    </a> 
-  </div>
-
-  <div class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" href="https://bulma.io/">
-        Home
-      </a>
-    </div>
-  </div>
-</nav>
+     <Nav />
 
     <div id="nav">
       <router-link to="/">Home</router-link> |
@@ -23,6 +9,18 @@
     <router-view/>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import Nav from '@/components/Nav.vue'; // @ is an alias to /src
+
+@Component({
+  components: {
+    Nav,
+  },
+})
+export default class App extends Vue {}
+</script>
 
 <style>
 #app {
