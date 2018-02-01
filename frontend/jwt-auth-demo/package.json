@@ -1,0 +1,44 @@
+{
+  "name": "jwt-auth-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "bulma": "^0.6.2",
+    "vue": "^2.5.13",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-alpha.5",
+    "@vue/cli-plugin-typescript": "^3.0.0-alpha.5",
+    "@vue/cli-service": "^3.0.0-alpha.5",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^6.0.0",
+    "vue-template-compiler": "^2.5.13"
+  },
+  "vue": {
+    "lintOnSave": true
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
