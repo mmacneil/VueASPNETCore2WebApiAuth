@@ -1,0 +1,25 @@
+Dev environment:
+
+Vetur - vue tooling for VS Code
+
+1. npm install -g vue-cli  
+1.1 then "npm run serve", "npm run build", "npm run lint" to actually build/run the project on node
+dev host.
+
+2. install bulma:
+npm install bulma
+
+3. import bulma
+main.scss -> @import '~bulma/bulma'
+
+4. main.ts
+You then need to reference this in Webpack’s main entry point, src/main.ts:
+// import the main Sass manifest file
+import "@/assets/sass/main.scss";
+
+NOTES:
+
+Build Error if path too deep:
+
+ERROR in ./node_modules/ts-loader!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/App.vue
+Module build failed: Error: Could not find file: 'C:\code\fullstackmark posts\VueASPNETCore2WebApiAuth\frontend\jwt-auth-demo\src\App.vue'.
