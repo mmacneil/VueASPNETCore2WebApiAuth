@@ -2,7 +2,7 @@
  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">    
     <router-link to="/" class="navbar-item">
-    <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+    <img src="../assets/logo.png" alt="Fullstack Mark: Vue2/ASPNET Core 2 Authentication" width="136" height="26">
     </router-link>   
   </div>
   <div class="navbar-menu">

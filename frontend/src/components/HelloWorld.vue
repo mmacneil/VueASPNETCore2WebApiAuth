@@ -1,13 +1,21 @@
 <template>  
-<div class="columns">
-  <div class="column is-10 hello"> 
-   
-       <h1 class="title">
-        {{ msg }}
-      </h1> 
-       <p>This demo shows local and facebook user registration and login flow using Vue.js v2.5.13, ASP.NET Core 2.0 WebApi and Facebook api</p>        
-  </div>
-</div>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="column is-8 is-offset-2">
+          <div class="content">
+          <h1 class="title has-text-grey">{{ msg }}</h1>
+          <p>This demo shows local and facebook user registration and login flow using Vue.js v2.5.13, ASP.NET Core 2.0 WebApi and Facebook api</p> 
+          </div>         
+         <div class="box">   
+           <router-link to="/register" class="button is-link">Signup with email</router-link>            
+           <a class="button is-link">Login with email</a>
+           <a class="button is-link">Signup/login with facebook</a>
+         </div>
+        </div>         
+      </div>     
+    </div>
+  </section> 
 </template>
 
 <script lang="ts">
@@ -20,7 +28,6 @@ export default class HelloWorld extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.hello {background:#f0f0f0}
+<style scoped> 
 </style>
  
