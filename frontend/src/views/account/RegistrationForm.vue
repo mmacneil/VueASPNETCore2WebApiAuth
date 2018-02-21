@@ -16,15 +16,28 @@
 
               <div class="field">
                 <div class="control">
-                  <input class="input is-large" type="password" placeholder="Your Password">
+                  <input class="input is-large" type="text" placeholder="Last name" v-model="user.lastName">
                 </div>
               </div>
+
               <div class="field">
-                <label class="checkbox">
-                  <input type="checkbox">
-                  Remember me
-                </label>
+                <div class="control">
+                  <input class="input is-large" type="email" placeholder="Email" v-model="user.email">
+                </div>
               </div>
+
+              <div class="field">
+                <div class="control">
+                  <input class="input is-large" type="password" placeholder="Password" v-model="user.password">
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <input class="input is-large" type="text" placeholder="Location" v-model="user.location">
+                </div>
+              </div>          
+           
               <button class="button is-block is-info is-large is-fullwidth" type="submit">Submit</button>
             </form>
           </div>
@@ -40,16 +53,46 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { HTTP } from '@/http-common';
+import axios from 'axios';
 
 @Component
 export default class RegistrationForm extends Vue {
-   protected data() {
+
+private user = { firstName: '', lastName: '', email: '', password: '', location: '' };
+
+private handleSubmit() {
+  alert(this.user.firstName + ' ' + this.user.lastName + ' ' + this.user.email + ' ' + this.user.password);
+
+  axios.post('http://localhost:5000/api/auth/login', {
+    userName: 'Fred',
+    password: 'Flintstone',
+  })
+    .then((response) => {
+       alert(response);
+    })
+    .catch((e) => {
+      alert(e);
+    });
+
+  /*HTTP.post('auth/login', {
+   body: {userName: 'mark', password: 'password123'},
+ })
+    .then((response) => {
+      alert('here');
+    })
+    .catch((e) => {
+      alert(e);
+    });*/
+}
+
+   /*protected data() {
     return {
       user: {
         firstName: '',
       },
     };
-  }
+  }*/
 }
 </script>
  
