@@ -1,23 +1,27 @@
 import axios from 'axios';
 import { UserRegistration } from '@/models/user.registration.interface';
+import { BaseService } from './base.service';
+import { Observable } from 'rxjs/Rx';
 
 const api = 'http://localhost:5000/api';
 
-class AccountService {
+class AccountService extends BaseService {
 
     private static instance: AccountService;
 
-    private constructor() {}
+    private constructor() {  super(); }
 
     public static get Instance() {
        // Do you need arguments? Make it a regular method instead.
        return this.instance || (this.instance = new this());
     }
 
-    public register(userRegistration: UserRegistration): any {
-        return axios.post(`${api}/accounts`, {userRegistration});
+    public register(userRegistration: UserRegistration): Observable<any> {
+        return Observable.fromPromise(axios.post(`${api}/accounts`, userRegistration))
+        .map((res: any) => true)
+        .catch((error: any) => this.handleError(error.response));
     }
 }
 
 // export a singleton instance in the global namespace
-const accountService = AccountService.Instance;
+export const accountService = AccountService.Instance;

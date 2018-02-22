@@ -56,7 +56,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { HTTP } from '@/http-common';
 import axios from 'axios';
 import { UserRegistration } from '../../models/user.registration.interface';
-import {accountService} from '../../services/account.service';
+import { accountService } from '../../services/account.service';
 
 @Component
 export default class RegistrationForm extends Vue {
@@ -64,9 +64,11 @@ export default class RegistrationForm extends Vue {
 private user = {} as UserRegistration;
 
 private handleSubmit() {
-  alert(this.user.firstName + ' ' + this.user.lastName + ' ' + this.user.email + ' ' + this.user.password);
-  accountService.register(this.user);
-  
+  accountService.register(this.user).finally(() => alert('finally()'))
+    .subscribe((result: any) => {
+      alert(result);
+    },
+    (errors: any) =>  alert(errors));
 }
 }
 </script>
