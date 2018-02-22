@@ -55,44 +55,19 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { HTTP } from '@/http-common';
 import axios from 'axios';
+import { UserRegistration } from '../../models/user.registration.interface';
+import {accountService} from '../../services/account.service';
 
 @Component
 export default class RegistrationForm extends Vue {
 
-private user = { firstName: '', lastName: '', email: '', password: '', location: '' };
+private user = {} as UserRegistration;
 
 private handleSubmit() {
   alert(this.user.firstName + ' ' + this.user.lastName + ' ' + this.user.email + ' ' + this.user.password);
-
-  axios.post('http://localhost:5000/api/auth/login', {
-    userName: 'Fred',
-    password: 'Flintstone',
-  })
-    .then((response) => {
-       alert(response);
-    })
-    .catch((e) => {
-      alert(e);
-    });
-
-  /*HTTP.post('auth/login', {
-   body: {userName: 'mark', password: 'password123'},
- })
-    .then((response) => {
-      alert('here');
-    })
-    .catch((e) => {
-      alert(e);
-    });*/
+  accountService.register(this.user);
+  
 }
-
-   /*protected data() {
-    return {
-      user: {
-        firstName: '',
-      },
-    };
-  }*/
 }
 </script>
  
