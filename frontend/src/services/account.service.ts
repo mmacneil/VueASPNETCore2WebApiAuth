@@ -3,8 +3,6 @@ import { UserRegistration } from '@/models/user.registration.interface';
 import { BaseService } from './base.service';
 import { Observable } from 'rxjs/Rx';
 
-const api = 'http://localhost:5000/api';
-
 class AccountService extends BaseService {
 
     private static instance: AccountService;
@@ -17,7 +15,7 @@ class AccountService extends BaseService {
     }
 
     public register(userRegistration: UserRegistration): Observable<any> {
-        return Observable.fromPromise(axios.post(`${api}/accounts`, userRegistration))
+        return Observable.fromPromise(axios.post(`${this.api}/accounts`, userRegistration))
         .map((res: any) => true)
         .catch((error: any) => this.handleError(error.response));
     }

@@ -36,40 +36,48 @@
                 <div class="control">
                   <input class="input is-large" type="text" placeholder="Location" v-model="user.location">
                 </div>
-              </div>          
-           
+              </div>  
+              <Spinner v-bind:show="isBusy" />
               <button class="button is-block is-info is-large is-fullwidth" type="submit">Submit</button>
+              <div class="errors-container" v-if="errors">
+                 {{errors}}
+              </div>
             </form>
-          </div>
-          <p class="has-text-grey">
-            <a href="../">Sign Up</a> &nbsp;·&nbsp;
-            <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-            <a href="../">Need Help?</a>
-          </p>
+          </div>        
         </div>
       </div>   
   </section>
   </template>
 
 <script lang="ts">
+import Spinner from '@/components/Spinner.vue'; // @ is an alias to /src
 import { Component, Vue } from 'vue-property-decorator';
-import { HTTP } from '@/http-common';
-import axios from 'axios';
 import { UserRegistration } from '../../models/user.registration.interface';
 import { accountService } from '../../services/account.service';
 
-@Component
+@Component({
+  components: {
+    Spinner,
+  },
+})
 export default class RegistrationForm extends Vue {
 
+private isBusy: boolean = false;
+private errors: string;
 private user = {} as UserRegistration;
 
 private handleSubmit() {
-  accountService.register(this.user).finally(() => alert('finally()'))
+  this.isBusy = true;
+  accountService.register(this.user).finally(() => this.isBusy = false)
     .subscribe((result: any) => {
-      alert(result);
+      this.$router.push('/login');
     },
-    (errors: any) =>  alert(errors));
+    (errors: any) =>  this.errors = errors);
 }
 }
 </script>
+
+<style lang="scss" scoped> 
+
+</style>
  

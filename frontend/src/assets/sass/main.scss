@@ -3,4 +3,7 @@
 https://github.com/jgthms/bulma/blob/master/sass/components/navbar.sass#L1,L34
 */
 
-@import '~bulma/bulma'
+@import '~bulma/bulma';
+
+.errors-container {background-color: $danger;color:#fff;padding:12px 0;margin-top:12px}
+
