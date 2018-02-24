@@ -3,27 +3,28 @@
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
           <h3 class="title has-text-grey">Login</h3>
-          <p class="subtitle has-text-grey">Please login to proceed.</p>
+          <p class="subtitle has-text-grey">Please login to proceed</p>
           <div class="box">
-            <form>
+            <form @submit.prevent="handleSubmit">
               <div class="field">
                 <div class="control">
-                  <input class="input is-large" type="email" placeholder="Your Email" autofocus="">
+                  <input class="input is-large" type="email" placeholder="Email" autofocus="" v-model="credentials.userName">
                 </div>
               </div>
-
               <div class="field">
                 <div class="control">
-                  <input class="input is-large" type="password" placeholder="Your Password">
+                  <input class="input is-large" type="password" placeholder="Password" v-model="credentials.password">
                 </div>
               </div>
-              <button class="button is-block is-info is-large is-fullwidth">Login</button>
+              <Spinner v-bind:show="isBusy" />
+              <button class="button is-block is-info is-large is-fullwidth" type="submit">Login</button>
+              <div class="errors-container" v-if="errors">
+                 {{errors}}
+              </div>
             </form>
           </div>
           <p class="has-text-grey">
-            <a href="../">Sign Up</a> &nbsp;·&nbsp;
-            <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-            <a href="../">Need Help?</a>
+             <router-link to="/register">Sign Up</router-link>
           </p>
         </div>
       </div>  
@@ -33,7 +34,7 @@
 <script lang="ts">
 import Spinner from '@/components/Spinner.vue'; // @ is an alias to /src
 import { Component, Vue } from 'vue-property-decorator';
-import { accountService } from '../../services/account.service';
+import { Credentials } from '../../models/credentials.interface';
 
 @Component({
   components: {
@@ -43,11 +44,21 @@ import { accountService } from '../../services/account.service';
 export default class RegistrationForm extends Vue {
 
 private isBusy: boolean = false;
-private errors: string;
+private errors: string = '';
+private credentials = {} as Credentials;
 
 private handleSubmit() {
-    alert('here');
-}
+     this.isBusy = true;
+     this.$store.dispatch('auth/AUTH_REQUEST', this.credentials).then((result) => {
+     this.$router.push('/');
+    })
+   .catch((err) => {
+    this.errors = err;
+  })
+  .then(() => {
+    this.isBusy = false;
+  });
+ }
 }
 </script>
 

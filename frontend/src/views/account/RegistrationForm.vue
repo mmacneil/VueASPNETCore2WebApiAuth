@@ -43,7 +43,10 @@
                  {{errors}}
               </div>
             </form>
-          </div>        
+          </div>
+          <p class="has-text-grey">
+             <router-link to="/login">Login</router-link>
+          </p>        
         </div>
       </div>   
   </section>
@@ -63,7 +66,7 @@ import { accountService } from '../../services/account.service';
 export default class RegistrationForm extends Vue {
 
 private isBusy: boolean = false;
-private errors: string;
+private errors: string = '';
 private user = {} as UserRegistration;
 
 private handleSubmit() {
