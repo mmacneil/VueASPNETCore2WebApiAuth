@@ -50,7 +50,7 @@ private credentials = {} as Credentials;
 private handleSubmit() {
      this.isBusy = true;
      this.$store.dispatch('auth/AUTH_REQUEST', this.credentials).then((result) => {
-     this.$router.push('/');
+     this.$router.push('/dashboard/home');
     })
    .catch((err) => {
     this.errors = err;

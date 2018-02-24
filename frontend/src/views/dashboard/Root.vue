@@ -1,6 +1,6 @@
 <template>
 <div>
-     <h1>dashboard home</h1>
+     <router-view></router-view>
 </div>
 </template>
 
@@ -11,5 +11,5 @@ import { Component, Vue } from 'vue-property-decorator';
   components: {
   },
 })
-export default class DashboardHome extends Vue {}
+export default class DashboardRoot extends Vue {}
 </script>

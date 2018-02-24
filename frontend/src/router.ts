@@ -4,6 +4,8 @@ import Home from './views/Home.vue';
 import RegistrationForm from './views/account/RegistrationForm.vue';
 import LoginForm from './views/account/LoginForm.vue';
 import About from './views/About.vue';
+import DashboardRoot from './views/dashboard/Root.vue';
+import DashboardHome from './views/dashboard/Home.vue';
 
 Vue.use(Router);
 
@@ -23,6 +25,16 @@ export default new Router({
       path: '/login',
       name: 'loginForm',
       component: LoginForm,
+    },
+    {
+      path: '/dashboard',
+      component: DashboardRoot,
+      children: [
+        {
+          path: 'home',
+          component: DashboardHome,
+        },
+      ],
     },
     {
       path: '/about',
