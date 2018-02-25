@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { Credentials } from './models/credentials.interface';
 import { authService } from './services/auth.service';
 import { profileService } from './services/profile.service';
+import { EventBus } from './event-bus';
 
 Vue.use(Vuex);
 
@@ -17,48 +18,7 @@ export default new Vuex.Store({
 
   },
   modules: {
-    user: {
-      namespaced: true,
-      state: {
-        profile: {},
-        status: '',
-      },
-      actions: {
-        USER_REQUEST: ({commit, dispatch}) => {
-          commit('USER_REQUEST');
-          profileService.get()
-          .subscribe((result: any) => {
-            commit('USER_SUCCESS', result);
-          },
-          /* apiCall({url: 'user/me'})
-          .then(resp => {
-          commit(USER_SUCCESS, resp)
-          })
-          .catch(resp => {
-          commit(USER_ERROR)
-          // if resp is unauthorized, logout, to
-          dispatch(AUTH_LOGOUT)
-          })*/
-        (errors: any) => {
-          commit('USER_ERROR');
-          dispatch('auth/AUTH_LOGOUT', null, { root: true });
-        });
-      },
-    },
-    mutations: {
-        USER_REQUEST: (state: any) => {
-          state.status = 'attempting request for user profile data';
-        },
-        USER_SUCCESS: (state: any, resp: any) => {
-          state.status = 'success';
-          Vue.set(state, 'profile', resp);
-        },
-        USER_ERROR: (state) => {
-          state.status = 'error';
-        },
-      },
-  },
-  auth: {
+    auth: {
       namespaced: true,
       state: {
         token: localStorage.getItem('auth-token') || '',
@@ -71,6 +31,7 @@ export default new Vuex.Store({
         AUTH_SUCCESS: (state, authToken) => {
           state.status = 'authentication succeeded';
           state.token = authToken;
+          EventBus.$emit('logged-in', null);
         },
         AUTH_ERROR: (state) => {
           state.status = 'error';
@@ -78,7 +39,12 @@ export default new Vuex.Store({
         AUTH_LOGOUT: (state) => {
           state.token = '';
         },
-       },
+      },
+      getters: {
+        isAuthenticated: (state: any) => !!state.token,
+        authStatus: (state: any) => state.status,
+        authToken: (state: any) => state.token,
+      },
       actions: {
       AUTH_REQUEST: ({commit, dispatch}: {commit: any, dispatch: any} , credentials: Credentials) => {
 
@@ -105,12 +71,42 @@ export default new Vuex.Store({
           resolve();
         });
     },
-  },
-    getters: {
-      isAuthenticated: (state: any) => !!state.token,
-      authStatus: (state: any) => state.status,
-      authToken: (state: any) => state.token,
+   },
+ },
+    user: {
+      namespaced: true,
+      state: {
+        profile: {},
+        status: '',
+      },
+      actions: {
+        USER_REQUEST: ({commit, dispatch}) => {
+          commit('USER_REQUEST');
+          profileService.get()
+          .subscribe((result: any) => {
+            commit('USER_SUCCESS', result);
+          },
+        (errors: any) => {
+          commit('USER_ERROR');
+          dispatch('auth/AUTH_LOGOUT', null, { root: true });
+        });
+      },
     },
+    mutations: {
+        USER_REQUEST: (state: any) => {
+          state.status = 'attempting request for user profile data';
+        },
+        USER_SUCCESS: (state: any, resp: any) => {
+          state.status = 'success';
+          Vue.set(state, 'profile', resp);
+        },
+        USER_ERROR: (state) => {
+          state.status = 'error';
+        },
+      },
+    getters: {
+        profile: (state: any) => state.profile,
+      },
   },
 },
 });

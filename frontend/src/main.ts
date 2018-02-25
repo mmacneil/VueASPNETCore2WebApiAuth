@@ -13,14 +13,14 @@ new Vue({
   render: (h) => h(App),
 }).$mount('#app');
 
-axios.interceptors.request.use((config) => {
+axios.interceptors.request.use((config: any) => {
 
   const authToken = store.getters['auth/authToken'];
   if (authToken) {
     config.headers.Authorization = `Bearer ${authToken}`;
   }
   return config;
-}, (err) => {
+}, (err: any) => {
   return Promise.reject(err);
 });
 
