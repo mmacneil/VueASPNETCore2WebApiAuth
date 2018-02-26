@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Credentials } from '@/models/credentials.interface';
 import { BaseService } from './base.service';
 import { Observable } from 'rxjs/Rx';
 
