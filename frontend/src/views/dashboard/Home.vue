@@ -22,7 +22,11 @@
               <Spinner v-bind:show="isBusy" />
               <p v-if="homeData.message">{{homeData.message}}</p>              
               <p v-if="homeData.firstName"><strong>Name:</strong> {{name}}</p> 
-              <p v-if="homeData.location"><strong>Location:</strong> {{homeData.location}}</p>             
+              <p v-if="homeData.location"><strong>Location:</strong> {{homeData.location}}</p>   
+              <p v-if="homeData.locale"><strong>Locale:</strong> {{homeData.locale}}</p>       
+              <p v-if="homeData.gender"><strong>Gender:</strong> {{homeData.gender}}</p> 
+              <p v-if="homeData.facebookId"><strong>Facebook Id:</strong> {{homeData.facebookId}}</p> 
+              <div v-if="homeData.pictureUrl"><img :src="homeData.pictureUrl" /></div>                 
             </div>
           </div>
         </div>

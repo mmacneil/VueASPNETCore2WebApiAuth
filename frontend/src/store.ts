@@ -64,6 +64,24 @@ export default new Vuex.Store({
           });
         });
       },
+      FACEBOOK_AUTH_REQUEST: ({commit, dispatch}: {commit: any, dispatch: any} , accessToken: string) => {
+        return new Promise((resolve, reject) => {
+          commit('AUTH_REQUEST');
+          authService.facebookLogin(accessToken)
+          .subscribe((result: any) => {
+            localStorage.setItem('auth-token', result); // stash the auth token in localStorage
+            commit('AUTH_SUCCESS', result);
+            EventBus.$emit('logged-in', null);
+            dispatch('user/USER_REQUEST', null, { root: true });
+            resolve(result);
+          },
+          (errors: any) => {
+            commit('AUTH_ERROR', errors);
+            localStorage.removeItem('auth-token');
+            reject(errors);
+          });
+        });
+    },
     AUTH_LOGOUT: ({commit, dispatch}: {commit: any, dispatch: any}) => {
         return new Promise((resolve, reject) => {
           commit('AUTH_LOGOUT');

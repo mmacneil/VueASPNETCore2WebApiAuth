@@ -8,9 +8,9 @@
           <p>This demo shows local and facebook user registration and login flow using Vue.js v2.5.13, ASP.NET Core 2.0 WebApi and Facebook api</p> 
           </div>         
          <div class="box">   
-           <router-link to="/register" class="button is-link">Signup with email</router-link>            
-           <a class="button is-link">Login with email</a>
-           <a class="button is-link">Signup/login with facebook</a>
+           <router-link to="/register" class="button is-link">Signup with email</router-link>
+           <router-link to="/login" class="button is-link">Login with email</router-link>  
+           <router-link to="/facebook-login" class="button is-link">Signup/login with facebook</router-link>        
          </div>
         </div>         
       </div>     

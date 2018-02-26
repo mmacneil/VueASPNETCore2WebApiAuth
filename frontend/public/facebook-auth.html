@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JwtAuthDemo - Facebook Auth</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <script src="util.js"></script>
+  </head> 
+  <body>
+  <script>
+      // if we don't receive an access token then login failed and/or the user has not connected properly
+      var accessToken = getParameterByName("access_token");
+      var message = {};
+      if (accessToken) {
+        message.status = true;
+        message.accessToken = accessToken;
+      }
+      else
+      {
+        message.status = false;
+        message.error = getParameterByName("error");
+        message.errorDescription = getParameterByName("error_description");
+      }
+      window.opener.postMessage(JSON.stringify(message), "http://localhost:8080");
+  </script>
+  </body>
+</html>

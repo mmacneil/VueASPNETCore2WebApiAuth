@@ -19,6 +19,12 @@ class AuthService extends BaseService {
         .map((res: any) => res.data.auth_token)
         .catch((error: any) => this.handleError(error.response));
     }
+
+    public facebookLogin(accessToken: string): Observable<any> {
+        return Observable.fromPromise(axios.post(`${this.api}/externalauth/facebook`, {accessToken}))
+        .map((res: any) => res.data.auth_token)
+        .catch((error: any) => this.handleError(error.response));
+    }
 }
 
 // export a singleton instance in the global namespace
