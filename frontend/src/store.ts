@@ -31,7 +31,6 @@ export default new Vuex.Store({
         AUTH_SUCCESS: (state, authToken) => {
           state.status = 'authentication succeeded';
           state.token = authToken;
-          EventBus.$emit('logged-in', null);
         },
         AUTH_ERROR: (state) => {
           state.status = 'error';
@@ -54,6 +53,7 @@ export default new Vuex.Store({
           .subscribe((result: any) => {
             localStorage.setItem('auth-token', result); // stash the auth token in localStorage
             commit('AUTH_SUCCESS', result);
+            EventBus.$emit('logged-in', null);
             dispatch('user/USER_REQUEST', null, { root: true });
             resolve(result);
           },

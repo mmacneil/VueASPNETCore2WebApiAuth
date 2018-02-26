@@ -9,7 +9,8 @@
     <div class="navbar-start">
     <a class="navbar-item" href="javascript:void(0)" v-on:click="logoff" v-show="isAuthenticated">Logoff {{profile.firstName}}</a>
     <router-link to="/register"  class="navbar-item" v-show="!isAuthenticated">Email signup</router-link>     
-    <router-link to="/login"  class="navbar-item"  v-show="!isAuthenticated">Email login</router-link>   
+    <router-link to="/login"  class="navbar-item"  v-show="!isAuthenticated">Email login</router-link>  
+    <router-link to="/dashboard/home"  class="navbar-item"  v-show="isAuthenticated">Dashboard</router-link>   
     </div>
   </div>
 </nav>
@@ -35,7 +36,9 @@ export default class Nav extends Vue {
   }
   private created() {
    EventBus.$on('logged-in', (payLoad: any) => {
-      alert('on event' + payLoad);
+      // this doesn't currently do anything in this demo but does get fired on successful login.
+      // leaving it here to show how to allow communication between unrelated components - ie. Store -> Component
+      console.log('logged-in message received...');
     });
   }
 
