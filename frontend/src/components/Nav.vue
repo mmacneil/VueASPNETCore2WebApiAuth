@@ -31,7 +31,7 @@ import { mapGetters } from 'vuex';
 export default class Nav extends Vue {
 
   private logoff() {
-     this.$store.dispatch('auth/AUTH_LOGOUT').then(() => {
+     this.$store.dispatch('auth/authLogout').then(() => {
         this.$router.push('/');
      });
   }

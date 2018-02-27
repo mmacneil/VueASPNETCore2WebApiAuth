@@ -67,7 +67,7 @@ export default class FacebookLogin extends Vue {
         } else {
              this.failed = false;
              this.isBusy = true;
-             this.$store.dispatch('auth/FACEBOOK_AUTH_REQUEST', result.accessToken).then((fbResult) => {
+             this.$store.dispatch('auth/facebookAuthRequest', result.accessToken).then((fbResult) => {
                 this.$router.push('/dashboard/home');
              })
              .catch((err) => {

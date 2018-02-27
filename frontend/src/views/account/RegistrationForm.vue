@@ -73,7 +73,7 @@ private handleSubmit() {
   this.isBusy = true;
   accountService.register(this.user).finally(() => this.isBusy = false)
     .subscribe((result: any) => {
-      this.$router.push('/login');
+      this.$router.push({name: 'loginForm', query: { new: 'true', firstName: this.user.firstName, email: this.user.email }});
     },
     (errors: any) =>  this.errors = errors);
 }

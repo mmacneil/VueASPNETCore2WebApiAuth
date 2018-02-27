@@ -49,7 +49,7 @@ private credentials = {} as Credentials;
 
 private handleSubmit() {
      this.isBusy = true;
-     this.$store.dispatch('auth/AUTH_REQUEST', this.credentials).then((result) => {
+     this.$store.dispatch('auth/authRequest', this.credentials).then((result) => {
      this.$router.push('/dashboard/home');
     })
    .catch((err) => {
