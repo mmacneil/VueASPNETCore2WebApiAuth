@@ -2,9 +2,17 @@
     <section class="section">
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
-          <a href="javascript:void(0)"  v-on:click="launchFbLogin">
+          <a href="javascript:void(0)" v-if="!isBusy"  v-on:click="launchFbLogin">
             <img src="../../assets/facebook-login.png" alt="Login with your facebook account">
           </a>
+          <Spinner v-bind:show="isBusy" />
+          <div class="errors-container" v-if="failed">
+              <p>Oops! Your facebook login failed.</p>
+                <ul>
+                    <li>Error: {{error}}</li>
+                    <li>Description: {{errorDescription}}</li>
+                </ul>
+            </div>
         </div>
       </div>
     </section>
@@ -12,15 +20,17 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Spinner from '@/components/Spinner.vue'; // @ is an alias to /src
 
 @Component({
   components: {
+    Spinner,
   },
 })
 export default class FacebookLogin extends Vue {
 
  private authWindow: Window | null;
- private failed: boolean;
+ private failed: boolean = false;
  private error: string;
  private errorDescription: string;
  private isBusy: boolean = false;
@@ -39,7 +49,6 @@ export default class FacebookLogin extends Vue {
   }
 
  private handleMessage(event: Event) {
-        alert('handleMessage()');
         const message = event as MessageEvent;
         // Only trust messages from the below origin.
         if (message.origin !== 'http://localhost:8080') {
@@ -63,6 +72,7 @@ export default class FacebookLogin extends Vue {
              })
              .catch((err) => {
                 this.errors = err;
+                this.failed = true;
              })
              .then(() => {
                 this.isBusy = false;
