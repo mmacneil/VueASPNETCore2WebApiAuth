@@ -29,8 +29,8 @@ namespace AuthWebApi.Controllers
     [HttpPost]
     public async Task<IActionResult> Post([FromBody]RegistrationViewModel model)
     {
-      // simulate longer running operation to show UI state change
-        await Task.Delay(500);
+      // simulate slightly longer running operation to show UI state change
+        await Task.Delay(250);
 
         if (!ModelState.IsValid)
         {

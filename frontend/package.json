@@ -12,31 +12,18 @@
     "bulma": "^0.6.2",
     "rxjs": "^5.5.6",
     "vue": "^2.5.13",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^6.0.0",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-alpha.5",
-    "@vue/cli-plugin-typescript": "^3.0.0-alpha.5",
-    "@vue/cli-service": "^3.0.0-alpha.5",
+    "@vue/cli-plugin-babel": "^3.0.0-beta.2",
+    "@vue/cli-plugin-typescript": "^3.0.0-beta.2",
+    "@vue/cli-service": "^3.0.0-beta.2",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "vue-class-component": "^6.0.0",
-    "vue-property-decorator": "^6.0.0",
     "vue-template-compiler": "^2.5.13"
-  },
-  "vue": {
-    "lintOnSave": true
-  },
-  "babel": {
-    "presets": [
-      "@vue/app"
-    ]
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
   },
   "browserslist": [
     "> 1%",

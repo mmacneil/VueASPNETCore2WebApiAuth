@@ -29,10 +29,10 @@ import Spinner from '@/components/Spinner.vue'; // @ is an alias to /src
 })
 export default class FacebookLogin extends Vue {
 
- private authWindow: Window | null;
+ private authWindow: Window | null = null;
  private failed: boolean = false;
- private error: string;
- private errorDescription: string;
+ private error: string = '';
+ private errorDescription: string = '';
  private isBusy: boolean = false;
  private errors: string = '';
 
@@ -45,13 +45,13 @@ export default class FacebookLogin extends Vue {
  }
 
  private launchFbLogin() {
-    this.authWindow = window.open('https://www.facebook.com/v2.11/dialog/oauth?&response_type=token&display=popup&client_id=1528751870549294&display=popup&redirect_uri=http://localhost:8080/facebook-auth.html&scope=email', '', 'width=600,height=400');
+    this.authWindow = window.open('https://www.facebook.com/v2.11/dialog/oauth?&response_type=token&display=popup&client_id=1528751870549294&display=popup&redirect_uri=http://localhost:8088/facebook-auth.html&scope=email', '', 'width=600,height=400');
   }
 
  private handleMessage(event: Event) {
         const message = event as MessageEvent;
         // Only trust messages from the below origin.
-        if (message.origin !== 'http://localhost:8080') {
+        if (message.origin !== 'http://localhost:8088') {
             return;
         }
 

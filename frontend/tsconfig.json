@@ -3,18 +3,23 @@
     "target": "es2015",
     "module": "es2015",
     "strict": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "types": [
+      "node",
+    ],
     "paths": {
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    "strictPropertyInitialization": false //https://github.com/vuejs/vue-cli/issues/834
   },
   "include": [
     "src/**/*.ts",
