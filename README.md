@@ -5,4 +5,4 @@ Sample project based on <a href="https://fullstackmark.com/post/16/user-authenti
 <img src="https://fullstackmark.com/img/posts/16/vue-spa-aspnet-core-web-api-authentication-with-facebook-login-flow.gif" />
 
 ### Email flow
-<img src="https://fullstackmark.com/img/posts/16/https://fullstackmark.com/img/posts/16/vue-spa-aspnet-core-web-api-authentication-with-email-signup-flow.gif" />
+<img src="https://fullstackmark.com/img/posts/16/vue-spa-aspnet-core-web-api-authentication-with-email-signup-flow.gif" />
